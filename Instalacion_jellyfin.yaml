@@ -1,0 +1,45 @@
+# Instalación de Docker-compose en raspberry pi 4 OS raspbian
+# Fuente → https://github.com/pablokbs/peladonerd/tree/master/raspi/1
+
+
+###     PRIMERA PARTE     ###
+
+# 1 -Instalación de paquetes necesarios, ejecutar el conjunto de comandos a la vez en shell:
+sudo apt-get update && sudo apt-get install -y \
+  apt-transport-https \
+  ca-certificates \
+  curl \
+  gnupg2 \
+  software-properties-common \
+  vim \
+  fail2ban \
+  ntfs-3g
+
+
+# 2 - Instalar firmas GPG del repo de docker, ejecutamos en shell:
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+
+# 3 - Agregar Repo de docker:
+echo "deb [arch=armhf] https://download.docker.com/linux/debian \
+     $(lsb_release -cs) stable" | \
+    sudo tee /etc/apt/sources.list.d/docker.list
+
+# 4 - Instalar Docker
+sudo apt-get update && sudo apt-get install -y --no-install-recommends docker-ce docker-compose
+
+
+# 5 - OPCIONAL, RECOMENDADO Este paso es para no tener que ejecutar docker como root, para evitar tener que ejecutar docker con derechos de admin.
+sudo groupadd docker
+
+# 6 - Agregar el user que utilicemos (en mi caso abgoz) al grupo docker y desloguearse y volver a loguearse:
+sudo usermod -a -aG docker abgoz
+  #(logout and login)
+
+
+
+
+
+###     SEGUNDA PARTE     ###
+
+# 7 - Instalacion Portainer en docker-compose
