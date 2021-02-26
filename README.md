@@ -47,8 +47,14 @@ sudo usermod -a -G docker <usuario>
 
 
 
-#Paso7
-# Instalación de rclone en docker-compose
+#Paso 7
+#Instalación de rclone en docker-compose
 #Generamos el archivo de configuracion rclone e instalamos la versión beta con el siguiente comando en la shell:
 
 docker run -it -v ~/.config/rclone:/config/rclone rclone/rclone:beta config
+
+#Paso 8
+#En este paso hay que configurar “remote”, “user-id" , "user-secret”, habilitar APP Drive en API Console Google y crear credenciales. Permitir acceso a nuestra cuenta gdrive desde la API y copiar el token que nos da para introducirlo en rclone.
+       https://www.youtube.com/watch?v=mnDYJ2ZpdxU
+       https://github.com/pablokbs/peladonerd/blob/master/v2m/26/comandos.txt
+       https://rclone.org/install/
